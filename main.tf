@@ -66,7 +66,7 @@ resource fortios_switchcontrollersecuritypolicy_localaccess localaccess {
 }
 
 resource fortios_switchcontrollersecuritypolicy_8021X dot1x {
-  for_each                            = { for name, profile in try(local.switches_yaml.dot1x, []) : name => profile}
+  for_each                            = { for name, profile in try(local.switches_yaml.port-policies, []) : name => profile}
 
   name                                = each.key
   security_mode                       = try(each.value.security_mode, null)
